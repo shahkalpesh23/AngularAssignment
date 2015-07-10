@@ -23,7 +23,7 @@ app.controller("EmpController", function ($scope, Alerts) {
     $scope.EmployeeList = [];
 
     $scope.AcceptEnrollment = function () {
-        var empObj = {};
+        var empObj = null;
         empObj = { UserName: $scope.UserName, FirstName: $scope.FirstName, LastName: $scope.LastName, Designation: $scope.Designation };
         if (empObj) {
             var obj = $scope.EmployeeList.filter(function (c) {
@@ -97,7 +97,8 @@ app.controller("EmpController", function ($scope, Alerts) {
         var index = $scope.EmployeeList.indexOf(empObj);
         if (index > -1) {
             $scope.EmployeeList.splice(index, 1);
-            alert($scope.FactoryData.Success);
+            clearInputs();
+            alert($scope.FactoryData.DelectSuccess);
         }
         else
             alert($scope.FactoryData.Error);
