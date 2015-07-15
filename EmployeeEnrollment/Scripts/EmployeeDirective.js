@@ -22,13 +22,17 @@ angular.module("empApp.Directives.EmployeeDirective", []).directive("employeeLis
                 if (!empList) return true;
 
                 empList.filter(function (e) {
-                    if (e.UserName.toLowerCase() === value.toLowerCase()) {                       
+                    if (e.UserName.toLowerCase() === value.toLowerCase()) {
                         if (!iScope.IsItemEditable) {
                             isUnique = false;
                             alert(Alerts.WarningMsg.replace("{0}", value));
                             return false;
                         }
                         return false;
+                    }
+                    else {
+                        isUnique = true;
+                        return true;
                     }
                 });
                 return isUnique;
