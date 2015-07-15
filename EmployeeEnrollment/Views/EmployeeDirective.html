@@ -1,0 +1,27 @@
+﻿<div id="divDisplayEnrollments">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Sr.No</th>
+                <th>User Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Designation</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="emp in empList">
+                <td ng-bind="$index+1"></td>
+                <td ng-bind="emp.UserName"></td>
+                <td><span id="spnFirstName" ng-bind="emp.FirstName"></span></td>
+                <td><span id="spnLastName" ng-bind="emp.LastName"></span></td>
+                <td><span id="spnDesignation" ng-bind="emp.Designation"></span></td>
+                <td>
+                    <input type="button" ng-click="editEnrollment()(emp);" id="btnEdit" value="Edit" class="btn" />
+                    <input type="button" ng-click="removeEnrollment()(emp);" id="btnRemove" value="Remove" class="btn" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

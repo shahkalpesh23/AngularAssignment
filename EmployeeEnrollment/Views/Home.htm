@@ -5,6 +5,7 @@
     <script src="../Scripts/angular.min.js" type="text/javascript"></script>
     <script src="../Scripts/jquery-1.9.1.js" type="text/javascript"></script>
     <script src="../Scripts/Main.js" type="text/javascript"></script>
+    <script src="../Scripts/EmployeeDirective.js"></script>
     <link href="../Styles/bootstrap.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         body {
@@ -29,14 +30,14 @@
                 Employee Enrollment Portal
             </p>
         </div>
-        <form name="empForm" novalidate>
+        <form name="empForm" novalidate ng-submit="AcceptEnrollment()">
             <div id="divUserName" class="row">
 
                 <div class="span2"></div>
 
                 <div id="InfoDisplayDiv" class="span4">
                     <span class="input-block-level">User Name</span>
-                    <input ng-disabled="IsItemEditable" ng-model="UserName" class="span3" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
+                    <input ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="UserName" class="span3" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
                     <span ng-show="empForm.UserName.$invalid">*</span>
                 </div>
 
@@ -68,40 +69,15 @@
 
             <div id="divBtn" class="row">
                 <div class="span2"></div>
-                <input type="button" ng-show="!IsItemEditable" class="span2" ng-disabled="!empForm.$valid" class="btn-block" ng-click="AcceptEnrollment()" id="btnSubmit" value="Submit" />
+                <input type="submit" ng-show="!IsItemEditable" class="btn" value="Submit" />
                 <div class="span2"></div>
-                <input type="button" class="span2" ng-show="IsItemEditable" ng-click="UpdateEnrollment($index)" id="btnUpdate" value="Update" class="btn" />
+                <input type="button" class="span2" ng-show="IsItemEditable" ng-click="UpdateEnrollment()" id="btnUpdate" value="Update" class="btn" />
             </div>
 
         </form>
 
-        <div id="divDisplayEnrollments">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Sr.No</th>
-                        <th>User Name</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Designation</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="emp in EmployeeList">
-                        <td ng-bind="$index+1"></td>
-                        <td ng-bind="emp.UserName"></td>
-                        <td><span ng-attr-id="{{ 'spnFirstName-' + $index }}" ng-bind="emp.FirstName"></span></td>
-                        <td><span ng-attr-id="{{ 'spnLastName-' + $index }}" ng-bind="emp.LastName"></span></td>
-                        <td><span ng-attr-id="{{ 'spnDesignation-' + $index }}" ng-bind="emp.Designation"></span></td>
-                        <td>
-                            <input type="button" ng-click="EditItem(emp)" id="btnEdit" value="Edit" class="btn" />
-                            <input type="button" ng-click="RemoveEnrollment(emp)" id="btnRemove" value="Remove" class="btn" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div employee-list-directive emp-list="EmployeeList" edit-enrollment="EditItem" remove-enrollment="RemoveEnrollment"></div>
+        
     </div>
 </body>
 </html>

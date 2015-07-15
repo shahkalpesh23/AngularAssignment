@@ -1,4 +1,4 @@
-﻿var app = angular.module("empApp", []);
+﻿var app = angular.module("empApp", ["empApp.Directives.EmployeeDirective"]);
 
 app.factory("Alerts", function () {
     return {
@@ -21,23 +21,29 @@ app.controller("EmpController", function ($scope, Alerts) {
     $scope.IndexToUpdate = -1;
 
     $scope.EmployeeList = [];
+    //$scope.EmployeeList.push({ UserName: "UName", FirstName: "FName", LastName: "LName", Designation: "Desgination" });
 
     $scope.AcceptEnrollment = function () {
+        if ($scope.empForm.$invalid) return false;
+
         var empObj = null;
         empObj = { UserName: $scope.UserName, FirstName: $scope.FirstName, LastName: $scope.LastName, Designation: $scope.Designation };
         if (empObj) {
-            var obj = $scope.EmployeeList.filter(function (c) {
-                return c.UserName.toLowerCase() === $scope.UserName.toLowerCase();
-            });
-            if (obj.length === 0) {
-                $scope.EmployeeList.push(empObj);
-                alert($scope.FactoryData.Success.replace("{0}", $scope.UserName));
-                clearInputs();                
-            }
-            else {
-                alert($scope.FactoryData.WarningMsg.replace("{0}", $scope.UserName));
-                clearInputs();
-            }
+            $scope.EmployeeList.push(empObj);
+            alert($scope.FactoryData.Success.replace("{0}", $scope.UserName));
+            clearInputs();
+            //var obj = $scope.EmployeeList.filter(function (c) {
+            //    return c.UserName.toLowerCase() === $scope.UserName.toLowerCase();
+            //});
+            //if (obj.length === 0) {
+            //    $scope.EmployeeList.push(empObj);
+            //    alert($scope.FactoryData.Success.replace("{0}", $scope.UserName));
+            //    clearInputs();                
+            //}
+            //else {
+            //    alert($scope.FactoryData.WarningMsg.replace("{0}", $scope.UserName));
+            //    clearInputs();
+            //}
         }
         else {
             clearInputs();
@@ -70,14 +76,15 @@ app.controller("EmpController", function ($scope, Alerts) {
     };
 
     $scope.UpdateEnrollment = function () {
+        if (!$scope.empForm.$invalid) {
 
-
-        $scope.EmployeeList[$scope.IndexToUpdate].FirstName = $scope.FirstName;
-        $scope.EmployeeList[$scope.IndexToUpdate].LastName = $scope.LastName;
-        $scope.EmployeeList[$scope.IndexToUpdate].Designation = $scope.Designation;
-        clearInputs();
-        $scope.IsItemEditable = false;
-        alert($scope.FactoryData.UpdateSuccess);
+            $scope.EmployeeList[$scope.IndexToUpdate].FirstName = $scope.FirstName;
+            $scope.EmployeeList[$scope.IndexToUpdate].LastName = $scope.LastName;
+            $scope.EmployeeList[$scope.IndexToUpdate].Designation = $scope.Designation;
+            clearInputs();
+            $scope.IsItemEditable = false;
+            alert($scope.FactoryData.UpdateSuccess);
+        }
         //$scope.EmployeeList[index].FirstName = $("#txtEditFirstName").val();
         //$scope.EmployeeList[index].LastName = $("#txtEditLastName").val();
         //$scope.EmployeeList[index].Designation = $("#txtEditDesignation").val();
