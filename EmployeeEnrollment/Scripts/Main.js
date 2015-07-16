@@ -21,7 +21,6 @@ app.controller("EmpController", function ($scope, Alerts) {
     $scope.IndexToUpdate = -1;
 
     $scope.EmployeeList = [];
-    //$scope.EmployeeList.push({ UserName: "UName", FirstName: "FName", LastName: "LName", Designation: "Desgination" });
 
     $scope.AcceptEnrollment = function () {
         if ($scope.empForm.$invalid) return false;
@@ -32,18 +31,6 @@ app.controller("EmpController", function ($scope, Alerts) {
             $scope.EmployeeList.push(empObj);
             alert($scope.FactoryData.Success.replace("{0}", $scope.UserName));
             clearInputs();
-            //var obj = $scope.EmployeeList.filter(function (c) {
-            //    return c.UserName.toLowerCase() === $scope.UserName.toLowerCase();
-            //});
-            //if (obj.length === 0) {
-            //    $scope.EmployeeList.push(empObj);
-            //    alert($scope.FactoryData.Success.replace("{0}", $scope.UserName));
-            //    clearInputs();                
-            //}
-            //else {
-            //    alert($scope.FactoryData.WarningMsg.replace("{0}", $scope.UserName));
-            //    clearInputs();
-            //}
         }
         else {
             clearInputs();
@@ -60,19 +47,6 @@ app.controller("EmpController", function ($scope, Alerts) {
             $scope.LastName = item.LastName;
             $scope.Designation = item.Designation;
         }
-
-
-        //var index = $scope.EmployeeList.indexOf(item);
-
-        //$("#spnFirstName-" + index).replaceWith(function () {
-        //    return "<input id=\"txtEditFirstName\" type=\"text\" value=\"" + $(this).html() + "\" />";
-        //});
-        //$("#spnLastName-" + index).replaceWith(function () {
-        //    return "<input id=\"txtEditLastName\" type=\"text\" value=\"" + $(this).html() + "\" />";
-        //});
-        //$("#spnDesignation-" + index).replaceWith(function () {
-        //    return "<input id=\"txtEditDesignation\" type=\"text\" value=\"" + $(this).html() + "\" />";
-        //});
     };
 
     $scope.UpdateEnrollment = function () {
@@ -84,20 +58,7 @@ app.controller("EmpController", function ($scope, Alerts) {
             clearInputs();
             $scope.IsItemEditable = false;
             alert($scope.FactoryData.UpdateSuccess);
-        }
-        //$scope.EmployeeList[index].FirstName = $("#txtEditFirstName").val();
-        //$scope.EmployeeList[index].LastName = $("#txtEditLastName").val();
-        //$scope.EmployeeList[index].Designation = $("#txtEditDesignation").val();
-
-        //$("input[id=txtEditFirstName]").replaceWith(function () {
-        //    return "<span ng-attr-id=\"{{'spnFirstName-' + $index }}\"  ng-bind=\"emp.FirstName\"></span>";
-        //});
-        //$("input[id=txtEditLastName]").replaceWith(function () {
-        //    return "<span ng-attr-id=\"{{'spnLastName-' + $index }}\"  ng-bind=\"emp.LastName\"></span>";
-        //});
-        //$("input[id=txtEditDesignation]").replaceWith(function () {
-        //    return "<span ng-attr-id=\"{{'spnDesignation-' + $index }}\"  ng-bind=\"emp.Designation\"></span>";
-        //});
+        }        
     };
 
     $scope.RemoveEnrollment = function (empObj) {
