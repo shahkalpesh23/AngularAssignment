@@ -1,0 +1,53 @@
+﻿ <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="brand" href="#"><strong>Enrollment Portal</strong> Login Form</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <br />
+        <br />
+        <br />
+        <div class="row" ng-controller="loginController">
+            <div class="span3"></div>
+            <div class="hero-unit" style="width: 300px;margin-left: 320px;">
+                <form name="frmLogin" ng-submit="SignIn()" novalidate>
+                    <div id="divUserName" class="row">
+                        <div class="span2"></div>
+
+                        <div id="div1" class="span4">
+                            <span class="input-block-level">User Name</span>
+                            <input class="span3" type="text" ng-model="Credentials.UserName" placeholder="User Name" name="UserName" id="txtUserName" required />
+                            <span ng-show="frmLogin.UserName.$invalid">*</span>
+                        </div>
+                    </div>
+
+                    <div id="divrowPwd" class="row">
+                        <div class="span2"></div>
+
+                        <div id="divPassword" class="span4">
+                            <span class="input-block-level">Password</span>
+                            <input class="span3" ng-model="Credentials.Password" type="password" name="pwd" placeholder="Password" id="txtPwd" required />
+                            <span ng-show="frmLogin.pwd.$invalid">*</span>
+                        </div>
+                    </div>
+
+                    <div id="divBtn" class="row">
+                        <div class="span4"></div>
+
+                        <div class="span2">
+                            <input type="submit" class="btn" value="LogIn" />
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <span ng-show="isInvalidLogin" class="alert-danger">Invalid domain Credentials</span>
+                    </div>
+
+                </form>
+                <p align="center">
+                </p>
+            </div>
+        </div>
+
+    </div>

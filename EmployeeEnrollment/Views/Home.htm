@@ -1,30 +1,15 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" ng-app="empApp">
-<head>
-    <title>Angular JS - Employee Enrollment</title>
-    <script src="../Scripts/angular.min.js" type="text/javascript"></script>
-    <script src="../Scripts/jquery-1.9.1.js" type="text/javascript"></script>
-    <script src="../Scripts/Main.js" type="text/javascript"></script>
-    <script src="../Scripts/EmployeeDirective.js"></script>
-    <link href="../Styles/bootstrap.css" rel="stylesheet" type="text/css" />
-    <style type="text/css">
-        body {
-            padding-top: 60px;
-            padding-bottom: 40px;
-        }
-    </style>
-    <link href="../Styles/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
-
-</head>
-<body>
+﻿<div ng-controller="EmpController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
                 <a class="brand" href="#">Employee Enrollment</a>
             </div>
+            <div class="pull-right">
+                <input type="button" ng-click="SignOut()" id="btnLogout" value="LogOut" class="btn" />
+            </div>
         </div>
     </div>
-    <div class="container" ng-controller="EmpController">
+    <div class="container">
         <div class="hero-unit">
             <p align="center">
                 Employee Enrollment Portal
@@ -37,13 +22,13 @@
 
                 <div id="InfoDisplayDiv" class="span4">
                     <span class="input-block-level">User Name</span>
-                    <input ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="UserName" class="span3" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
+                    <input ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="Employee.UserName" class="span3" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
                     <span ng-show="empForm.UserName.$invalid">*</span>
                 </div>
 
                 <div id="Div4" class="span4">
                     <span class="input-block-level">Employee First Name</span>
-                    <input ng-model="FirstName" class="span3" type="text" name="fname" placeholder="First Name" id="txtFName" required />
+                    <input ng-model="Employee.FirstName" class="span3" type="text" name="fname" placeholder="First Name" id="txtFName" required />
                     <span ng-show="empForm.fname.$invalid">*</span>
                 </div>
 
@@ -55,14 +40,32 @@
 
                 <div id="Div2" class="span4">
                     <span class="input-block-level">Employee Last Name</span>
-                    <input ng-model="LastName" class="span3" type="text" placeholder="Last Name" name="lname" id="txtLName" required />
+                    <input ng-model="Employee.LastName" class="span3" type="text" placeholder="Last Name" name="lname" id="txtLName" required />
                     <span ng-show="empForm.lname.$invalid">*</span>
                 </div>
 
                 <div id="Div3" class="span4">
                     <span class="input-block-level">Designation</span>
-                    <input ng-model="Designation" class="span3" type="text" placeholder="Designation" name="desig" id="txtDesignation" required />
+                    <input ng-model="Employee.Designation" class="span3" type="text" placeholder="Designation" name="desig" id="txtDesignation" required />
                     <span ng-show="empForm.desig.$invalid">*</span>
+                </div>
+
+            </div>
+
+            <div id="div1" class="row">
+
+                <div class="span2"></div>
+
+                <div id="Div5" class="span4">
+                    <span class="input-block-level">Salary</span>
+                    <input ng-model="Employee.Salary" class="span3" type="number" minlength="3" maxlength="6" name="salary" id="txtSalary" required />
+                    <span ng-show="empForm.salary.$invalid">*</span>
+                </div>
+
+                <div id="Div6" class="span4">
+                    <span class="input-block-level">Date</span>
+                    <input ng-model="Employee.Date" class="span3" type="date" name="edate" id="txtDate" required />
+                    <span ng-show="empForm.edate.$invalid">*</span>
                 </div>
 
             </div>
@@ -76,8 +79,7 @@
 
         </form>
 
-        <div employee-list-directive emp-list="EmployeeList" edit-enrollment="EditItem" remove-enrollment="RemoveEnrollment"></div>
-        
+        <div employee-list-directive emp-list="" edit-enrollment="EditItem" remove-enrollment="RemoveEnrollment"></div>
+
     </div>
-</body>
-</html>
+</div>

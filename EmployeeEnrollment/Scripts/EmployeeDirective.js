@@ -5,17 +5,19 @@ angular.module("empApp.Directives.EmployeeDirective", []).directive("employeeLis
         scope: {
             empList: "=",
             editEnrollment: "&",
-            removeEnrollment: "&"
+            removeEnrollment: "&"   
         },
         templateUrl: "/Views/EmployeeDirective.html",
     };
-}).directive("uniqueEmp", function ($parse, Alerts) {
+}).directive("uniqueEmp", function ($parse, Alerts, EnrollmentServices) {
     return {
         restrict: "A",
         require: 'ngModel',
         link: function (iScope, iEle, iAttrs, ngModel) {
             //this works like =
-            var empList = $parse(iAttrs.uniqueEmp)(iScope), isUnique = true;
+            //var empList = $parse(iAttrs.uniqueEmp)(iScope), 
+            var isUnique = true;
+            var empList = EnrollmentServices.GetEnrolledEmployees();
             //this works like @
             //var empList = iScope.$eval(iAttrs.uniqueEmp), isUnique = true;
             function isUniqueEmployee(value) {
