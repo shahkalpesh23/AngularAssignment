@@ -1,7 +1,8 @@
 ﻿
 app.controller("EmpController", function ($scope, EnrollmentServices, AuthenticateUser, IsAuthenticated, $location) {
 
-    $scope.Employee = null;
+    $scope.Employee = {};
+    $scope.Employee.Salary = 1000;
     $scope.IsItemEditable = false;
     $scope.EmployeeList = [];
 
@@ -38,10 +39,10 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
     }
 
     function clearInputs() {
-        $scope.Employee = null;
+        $scope.Employee = null;        
     }
 
-    function init() {
+    function init() {     
         if (!IsAuthenticated.success) {
             $location.path("/login");
         }
@@ -49,3 +50,4 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
 
     init();
 });
+

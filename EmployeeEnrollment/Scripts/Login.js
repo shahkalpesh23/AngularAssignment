@@ -4,19 +4,20 @@ app.constant("UserName", "Admin");
 app.constant("Password", "Admin@123");
 app.value("IsAuthenticated", { success: false });
 
-app.controller("loginController", function ($scope, AuthenticateUser, EnrollmentServices, IsAuthenticated) {
+app.controller("loginController", function (AuthenticateUser, EnrollmentServices, IsAuthenticated) {
 
-    $scope.Credentials = null;
-    $scope.isInvalidLogin = false;
-    $scope.SignIn = function () {
-        if ($scope.frmLogin.$valid) {
-            IsAuthenticated.success = AuthenticateUser.SignIn($scope.Credentials);
-            $scope.isInvalidLogin = !IsAuthenticated.success;
+    var that = this;
+    that.Credentials = null;
+    that.IsInvalidLogin = false;
+    that.SignIn = function () {
+        if (that.frmLogin.$valid) {
+            IsAuthenticated.success = AuthenticateUser.SignIn(that.Credentials);
+            that.IsInvalidLogin = !IsAuthenticated.success;
         }
     }
 
     function init() {
-        IsAuthenticated.success = false;
+        IsAuthenticated.success = false;     
     }
 
     init();
@@ -38,10 +39,8 @@ app.provider("AuthenticateUser", function (UserName, Password) {
             that.locationObj.path("/home")
             return true;
         }
-        else {
-            that.locationObj.path("/login");
-            return false;
-        }
+        that.locationObj.path("/login");
+        return false;
     }
 
     that.SignOut = function () {
@@ -60,7 +59,8 @@ app.config(["$routeProvider", function ($routeProvider) {
     $routeProvider
         .when("/login", {
             templateUrl: "/Views/Login.html",
-            controller: "loginController"
+            controller: "loginController",
+            controllerAs: "login"
         }).when("/home", {
             templateUrl: "/Views/Home.htm",
             controller: "EmpController"
