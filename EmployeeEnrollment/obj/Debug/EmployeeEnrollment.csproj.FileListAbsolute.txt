@@ -7,3 +7,4 @@ D:\MyRepository\AngularAssignment\EmployeeEnrollment\bin\EmployeeEnrollment.dll
 D:\MyRepository\AngularAssignment\EmployeeEnrollment\bin\EmployeeEnrollment.pdb
 D:\MyRepository\AngularAssignment\EmployeeEnrollment\obj\Debug\EmployeeEnrollment.dll
 D:\MyRepository\AngularAssignment\EmployeeEnrollment\obj\Debug\EmployeeEnrollment.pdb
+D:\MyRepository\AngularAssignment\EmployeeEnrollment\obj\Debug\EmployeeEnrollment.csprojResolveAssemblyReference.cache

@@ -31,6 +31,7 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
     $scope.RemoveEnrollment = function (empObj) {
         EnrollmentServices.DeleteEnrollment(empObj);
         $scope.EmployeeList = EnrollmentServices.GetEnrolledEmployees();
+        $scope.IsItemEditable = false;
         clearInputs();
     };
 
@@ -39,7 +40,7 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
     }
 
     function clearInputs() {
-        $scope.Employee = null;        
+        $scope.Employee = null;
     }
 
     function init() {     
