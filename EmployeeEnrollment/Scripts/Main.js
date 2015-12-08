@@ -23,7 +23,6 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
         if (!$scope.empForm.$invalid) {
             EnrollmentServices.UpdateEnrollment($scope.Employee);
             $scope.EmployeeList = EnrollmentServices.GetEnrolledEmployees();
-            $scope.IsItemEditable = false;
             clearInputs();
         }
     };
@@ -31,7 +30,6 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
     $scope.RemoveEnrollment = function (empObj) {
         EnrollmentServices.DeleteEnrollment(empObj);
         $scope.EmployeeList = EnrollmentServices.GetEnrolledEmployees();
-        $scope.IsItemEditable = false;
         clearInputs();
     };
 
@@ -40,6 +38,7 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
     }
 
     function clearInputs() {
+        $scope.IsItemEditable = false;
         $scope.Employee = null;
     }
 
