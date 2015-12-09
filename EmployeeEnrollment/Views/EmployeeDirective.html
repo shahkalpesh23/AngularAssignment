@@ -20,7 +20,7 @@
                 <td><span id="spnLastName" ng-bind="emp.LastName | uppercase"></span></td>
                 <td><span id="spnDesignation" ng-bind="emp.Designation"></span></td>
                 <td><span id="spnSalary" ng-bind="emp.Salary | currency:'&#8377;'"></span></td>
-                <td><span id="spnDate" ng-bind="emp.Date | date: 'dd/MM/yyyy'"</td>
+                <td><span id="spnDate" ng-bind="emp.Date | date: 'dd/MM/yyyy'"></span></td>
                 <td>
                     <input type="button" ng-click="editEnrollment()($index);" id="btnEdit" value="Edit" class="btn" />
                     <input type="button" ng-click="removeEnrollment()(emp);" id="btnRemove" value="Remove" class="btn" />
