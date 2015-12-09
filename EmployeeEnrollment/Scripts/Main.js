@@ -42,12 +42,10 @@ app.controller("EmpController", function ($scope, EnrollmentServices, Authentica
         $scope.Employee = null;
     }
 
-    function init() {     
+    (function init() {
         if (!IsAuthenticated.success) {
             $location.path("/login");
         }
-    }
-
-    init();
+    })();
 });
 

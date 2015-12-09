@@ -16,11 +16,9 @@ app.controller("loginController", function (AuthenticateUser, EnrollmentServices
         }
     }
 
-    function init() {
-        IsAuthenticated.success = false;     
-    }
-
-    init();
+    (function init() {
+        IsAuthenticated.success = false;
+    })();
 });
 
 app.provider("AuthenticateUser", function (UserName, Password) {
