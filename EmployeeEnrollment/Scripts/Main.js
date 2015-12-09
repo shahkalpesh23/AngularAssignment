@@ -1,51 +1,58 @@
 ﻿
-app.controller("EmpController", function ($scope, EnrollmentServices, AuthenticateUser, IsAuthenticated, $location) {
+var app = angular.module("empApp", ["ngRoute", "empApp.Directives.EmployeeDirective", "empApp.Services.EmployeeServices"]);
+app.constant("UserName", "Admin");
+app.constant("Password", "Admin@123");
+app.value("IsAuthenticated", { success: false });
 
-    $scope.Employee = {};
-    $scope.Employee.Salary = 1000;
-    $scope.IsItemEditable = false;
-    $scope.EmployeeList = [];
+app.provider("AuthenticateUser", function (UserName, Password) {
 
-    $scope.AcceptEnrollment = function () {
-        if ($scope.empForm.$invalid) return false;
+    var that = this;
+    that.locationObj = null;
 
-        EnrollmentServices.EnrollEmployee($scope.Employee);
-        $scope.EmployeeList = EnrollmentServices.GetEnrolledEmployees();
-        clearInputs();
-    };
-
-    $scope.EditItem = function (index) {
-        $scope.IsItemEditable = true;
-        $scope.Employee = EnrollmentServices.EditEnrollment(index);
-    };
-
-    $scope.UpdateEnrollment = function () {
-        if (!$scope.empForm.$invalid) {
-            EnrollmentServices.UpdateEnrollment($scope.Employee);
-            $scope.EmployeeList = EnrollmentServices.GetEnrolledEmployees();
-            clearInputs();
+    that.GetNavigationObject = function (locObj) {
+        if (locObj) {
+            that.locationObj = locObj;
         }
-    };
-
-    $scope.RemoveEnrollment = function (empObj) {
-        EnrollmentServices.DeleteEnrollment(empObj);
-        $scope.EmployeeList = EnrollmentServices.GetEnrolledEmployees();
-        clearInputs();
-    };
-
-    $scope.SignOut = function () {
-        IsAuthenticated.success = AuthenticateUser.SignOut()
     }
 
-    function clearInputs() {
-        $scope.IsItemEditable = false;
-        $scope.Employee = null;
+    that.SignIn = function (creds) {
+        if (creds.UserName === UserName && creds.Password === Password) {
+            that.locationObj.path("/home")
+            return true;
+        }
+        that.locationObj.path("/login");
+        return false;
     }
 
-    (function init() {
-        if (!IsAuthenticated.success) {
-            $location.path("/login");
-        }
-    })();
+    that.SignOut = function () {
+        that.locationObj.path("/login");
+        return false;
+    }
+
+    that.$get = function () {
+        return that;
+    }
+
 });
 
+app.config(["$routeProvider", function ($routeProvider) {
+
+    $routeProvider
+        .when("/login", {
+            templateUrl: "/Views/Login.html",
+            controller: "loginController",
+            controllerAs: "login"
+        }).when("/home", {
+            templateUrl: "/Views/Home.htm",
+            controller: "EmpController"
+        }).otherwise({
+            redirectTo: "/login"
+        });
+}]);
+
+app.run(function ($location, AuthenticateUser) {
+
+    AuthenticateUser.GetNavigationObject($location);
+    $location.path("/login");
+
+});
