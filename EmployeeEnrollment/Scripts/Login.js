@@ -5,14 +5,17 @@ app.controller("loginController", function (AuthenticateUser, EnrollmentServices
     that.Credentials = null;
     that.IsInvalidLogin = false;
     that.SignIn = function () {
-        if (that.frmLogin.$valid) {
+        debugger;
+        if (that.frmLogin !== undefined && that.frmLogin.$valid) {
             IsAuthenticated.success = AuthenticateUser.SignIn(that.Credentials);
             that.IsInvalidLogin = !IsAuthenticated.success;
         }
     }
 
-    (function init() {
+    function init() {
         IsAuthenticated.success = false;
-    })();
+    };
+
+    init();
 });
 
