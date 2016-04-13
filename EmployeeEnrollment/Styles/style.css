@@ -91,7 +91,9 @@ form:after {
 }
 
 .span {
-    width: 41px;
+    float: none;
+    width: 204px;
+    margin-left: 0;
 }
 
 .alert-danger,

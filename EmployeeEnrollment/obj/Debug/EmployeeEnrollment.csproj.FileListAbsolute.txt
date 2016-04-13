@@ -16,3 +16,4 @@ D:\GitHubRepository\AngularAssignment\EmployeeEnrollment\bin\EmployeeEnrollment.
 D:\GitHubRepository\AngularAssignment\EmployeeEnrollment\bin\EmployeeEnrollment.pdb
 D:\GitHubRepository\AngularAssignment\EmployeeEnrollment\obj\Debug\EmployeeEnrollment.dll
 D:\GitHubRepository\AngularAssignment\EmployeeEnrollment\obj\Debug\EmployeeEnrollment.pdb
+D:\GitHubRepository\AngularAssignment\EmployeeEnrollment\obj\Debug\EmployeeEnrollment.csprojResolveAssemblyReference.cache
