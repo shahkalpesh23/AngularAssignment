@@ -11,32 +11,26 @@
             <h1>Employee Enrollment Form</h1>
 
             <div>
-                <input ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="Employee.UserName" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
-                <span style="color: red" ng-show="empForm.UserName.$invalid">*</span>
-                <span class="span"></span>
-                <input ng-model="Employee.FirstName" type="text" name="fname" placeholder="First Name" id="txtFName" required />
-                <span style="color: red" ng-show="empForm.fname.$invalid">*</span>
+                <input class="pull-left" style="margin-left:160px;" ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="Employee.UserName" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />                
+                
+                <input class="pull-right" style="margin-right:160px;" ng-model="Employee.FirstName" type="text" name="fname" placeholder="First Name" id="txtFName" required />                
             </div>
 
             <div>
-                <input ng-model="Employee.LastName" type="text" placeholder="Last Name" name="lname" id="txtLName" required />
-                <span style="color: red" ng-show="empForm.lname.$invalid">*</span>
-                <span class="span"></span>
-                <input ng-model="Employee.Designation" type="text" placeholder="Designation" name="desig" id="txtDesignation" required />
-                <span style="color: red" ng-show="empForm.desig.$invalid">*</span>
+                <input class="pull-left" style="margin-left:160px;" ng-model="Employee.LastName" type="text" placeholder="Last Name" name="lname" id="txtLName" required />               
+                
+                <input class="pull-right" style="margin-right:160px;" ng-model="Employee.Designation" type="text" placeholder="Designation" name="desig" id="txtDesignation" required />               
             </div>
 
             <div>
-                <input ng-model="Employee.Salary" type="number" min="1000" max="100000" step="500" name="salary" id="txtSalary" required />
-                <span style="color: red" ng-show="empForm.salary.$invalid">*</span>
-                <span class="span"></span>
-                <input ng-model="Employee.Date" type="date" min="1960-01-01" name="edate" id="txtDate" required />
-                <span style="color: red" ng-show="empForm.edate.$invalid">*</span>
+                <input class="pull-left" style="margin-left:160px;" ng-model="Employee.Salary" type="number" min="1000" max="100000" step="500" name="salary" id="txtSalary" required />             
+
+                <input class="pull-right" style="margin-right:160px;" ng-model="Employee.Date" type="date" min="1960-01-01" name="edate" id="txtDate" required />              
             </div>
 
             <div>
-                <input type="submit" ng-show="!IsItemEditable" value="Submit" />
-                <input type="submit" ng-show="IsItemEditable" value="Update" />
+                <input style="margin-left:40em;" type="submit" ng-show="!IsItemEditable" value="Submit" />
+                <input style="margin-left:40em;" type="submit" ng-show="IsItemEditable" value="Update" />
             </div>
             <div ng-show="EmployeeList.length > 0" employee-list-directive emp-list="EmployeeList" edit-enrollment="EditItem" remove-enrollment="RemoveEnrollment"></div>
         </form>

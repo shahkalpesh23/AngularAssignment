@@ -106,6 +106,9 @@ form:after {
 .pull-right {
     float: right;
 }
+.pull-left {
+    float:left;
+}
 
 #content {
     background: #f9f9f9;
