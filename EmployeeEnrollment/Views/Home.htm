@@ -1,84 +1,46 @@
-﻿<div ng-controller="EmpController">
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="brand" href="#">Employee Enrollment</a>
-            </div>
-            <div class="pull-right">
-                <input type="button" ng-click="SignOut()" id="btnLogout" value="LogOut" class="btn" />
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="hero-unit">
-            <p align="center">
-                Employee Enrollment Portal
-            </p>
-        </div>
+﻿<div class="formContainer">
+    <section id="FormContent" ng-controller="homeController">
         <form name="empForm" ng-submit="AcceptEnrollment()">
-            <div id="divUserName" class="row">
 
-                <div class="span2"></div>
-
-                <div id="InfoDisplayDiv" class="span4">
-                    <span class="input-block-level">User Name</span>
-                    <input ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="Employee.UserName" class="span3" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
-                    <span style="color: red" ng-show="empForm.UserName.$invalid">*</span>
-                </div>
-
-                <div id="Div4" class="span4">
-                    <span class="input-block-level">Employee First Name</span>
-                    <input ng-model="Employee.FirstName" class="span3" type="text" name="fname" placeholder="First Name" id="txtFName" required />
-                    <span style="color: red" ng-show="empForm.fname.$invalid">*</span>
-                </div>
-
+            <div class="pull-right">
+                <button ng-click="SignOut()" id="btnLogout" type="button" class="btn btn-default btn-sm">
+                    <span class="glyphicon glyphicon-log-out"></span>Log out
+                </button>
             </div>
 
-            <div id="divLastName" class="row">
+            <h1>Employee Enrollment Form</h1>
 
-                <div class="span2"></div>
-
-                <div id="Div2" class="span4">
-                    <span class="input-block-level">Employee Last Name</span>
-                    <input ng-model="Employee.LastName" class="span3" type="text" placeholder="Last Name" name="lname" id="txtLName" required />
-                    <span style="color: red" ng-show="empForm.lname.$invalid">*</span>
-                </div>
-
-                <div id="Div3" class="span4">
-                    <span class="input-block-level">Designation</span>
-                    <input ng-model="Employee.Designation" class="span3" type="text" placeholder="Designation" name="desig" id="txtDesignation" required />
-                    <span style="color: red" ng-show="empForm.desig.$invalid">*</span>
-                </div>
-
+            <div>
+                <input ng-disabled="IsItemEditable" unique-emp="EmployeeList" ng-model="Employee.UserName" type="text" placeholder="User Name" name="UserName" id="txtUserName" required />
+                <span style="color: red" ng-show="empForm.UserName.$invalid">*</span>
+                <span class="span"></span>
+                <input ng-model="Employee.FirstName" type="text" name="fname" placeholder="First Name" id="txtFName" required />
+                <span style="color: red" ng-show="empForm.fname.$invalid">*</span>
             </div>
 
-            <div id="div1" class="row">
-
-                <div class="span2"></div>
-
-                <div id="Div5" class="span4">
-                    <span class="input-block-level">Salary</span>
-                    <input ng-model="Employee.Salary" class="span3" type="number" min="1000" max="100000" step="500" name="salary" id="txtSalary" required />
-                    <span style="color: red" ng-show="empForm.salary.$invalid">*</span>
-                </div>
-
-                <div id="Div6" class="span4">
-                    <span class="input-block-level">Date</span>
-                    <input ng-model="Employee.Date" class="span3" type="date" min="1960-01-01" name="edate" id="txtDate" required />
-                    <span style="color: red" ng-show="empForm.edate.$invalid">*</span>
-                </div>
-
+            <div>
+                <input ng-model="Employee.LastName" type="text" placeholder="Last Name" name="lname" id="txtLName" required />
+                <span style="color: red" ng-show="empForm.lname.$invalid">*</span>
+                <span class="span"></span>
+                <input ng-model="Employee.Designation" type="text" placeholder="Designation" name="desig" id="txtDesignation" required />
+                <span style="color: red" ng-show="empForm.desig.$invalid">*</span>
             </div>
 
-            <div id="divBtn" class="row">
-                <div class="span5"></div>
-                <input type="submit" ng-show="!IsItemEditable" class="btn" value="Submit" />
-                <input type="submit" ng-show="IsItemEditable" class="btn" value="Update" />                
+            <div>
+                <input ng-model="Employee.Salary" type="number" min="1000" max="100000" step="500" name="salary" id="txtSalary" required />
+                <span style="color: red" ng-show="empForm.salary.$invalid">*</span>
+                <span class="span"></span>
+                <input ng-model="Employee.Date" type="date" min="1960-01-01" name="edate" id="txtDate" required />
+                <span style="color: red" ng-show="empForm.edate.$invalid">*</span>
             </div>
 
+            <div>
+                <input type="submit" ng-show="!IsItemEditable" value="Submit" />
+                <input type="submit" ng-show="IsItemEditable" value="Update" />
+            </div>
+            <div ng-show="EmployeeList.length > 0" employee-list-directive emp-list="EmployeeList" edit-enrollment="EditItem" remove-enrollment="RemoveEnrollment"></div>
         </form>
-
-        <div ng-show="EmployeeList.length>0" employee-list-directive emp-list="EmployeeList" edit-enrollment="EditItem" remove-enrollment="RemoveEnrollment"></div>
-
-    </div>
+    </section>
 </div>
+
+
