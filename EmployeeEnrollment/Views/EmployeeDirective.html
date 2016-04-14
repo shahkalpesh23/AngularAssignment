@@ -22,8 +22,12 @@
                 <td><span id="spnSalary" ng-bind="emp.Salary | currency:'&#8377;'"></span></td>
                 <td><span id="spnDate" ng-bind="emp.Date | date: 'dd/MM/yyyy'"></span></td>
                 <td>
-                    <input type="button" ng-click="editEnrollment()($index);" id="btnEdit" value="Edit" />
-                    <input type="button" ng-click="removeEnrollment()(emp);" id="btnRemove" value="Remove" />
+                    <button ng-click="editEnrollment()($index);" title="Edit Record" id="btnEdit" type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-edit"></span>&nbsp;&nbsp;Edit
+                    </button>
+                    <button ng-click="removeEnrollment()(emp);" title="Delete Record" id="btnRemove" type="button" class="btn btn-default btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;Delete
+                    </button>
                 </td>
             </tr>
         </tbody>
